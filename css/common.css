@@ -1,0 +1,47 @@
+/* reset css */
+body,h1,h2,h3,h4,h5,h6,input,button,ul,li,p,table,tr,td{margin:0;padding:0;}
+body{background:#FFF;color:#303032;font-size:14px;-webkit-text-size-adjust: 100%;}
+a:active,input:focus,button:focus,textarea:focus,select:focus{outline:0;}
+a{text-decoration:none;}
+input,textarea{border:1px solid #C9CACE;border-radius:0.178571428em;box-sizing:border-box;font-size:1em;
+padding:0.571428em 0.428571em;color:#949494;-webkit-appearance:none;}
+input:disabled{background-color:#c4c5c6!important;border-color:#c4c5c6!important;color:white!important;-webkit-appearance:none;}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#c9cace;}
+li{list-style-type:none;}
+a,button,input{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+
+
+/* 弹性盒子 */
+/*ub-rev 子元素反序排列
+ub-con 在子元素中加入一个容器，用于避免内容引起子元素大小变化
+对应CSS代码为position:absolute;width:100%;height:100%;
+ub-ac、ub-ae 子元素水平居中对齐和尾对齐
+ub-pc、ub-pe、ub-pj 子元素垂直居中对齐、尾对齐和两端对齐
+ub-ver 子元素纵向排列
+ub-f1 ub-f2 ub-f3 ub-f4 子元素占用区域份数*/
+.ub,.ub-1{position:relative;display:-webkit-flex;display:flex;}
+.ub-rev{-webkit-box-direction:reverse;box-direction:reverse;}
+.ub-fh{width:100%;}
+.ub-fv{height:100%;}
+.ub-con{position:absolute;width:100%;height:100%;}
+.ub-ac{-webkit-box-align:center;box-align:center;}
+.ub-ae{-webkit-box-align:end;box-align:end;}
+.ub-pc{-webkit-box-pack:center;box-pack:center;}
+.ub-pe{-webkit-box-pack:end;box-pack:end;}
+.ub-pj{-webkit-box-pack:justify;box-pack:justify;}
+.ub-ver{-webkit-box-orient:vertical;box-orient:vertical;}
+.ub-f1{position:relative;-webkit-box-flex:1;box-flex:1;}
+.ub-f2{position:relative;-webkit-box-flex:2;box-flex:2;}
+.ub-f3{position:relative;-webkit-box-flex:3;box-flex:3;}
+.ub-f4{position:relative;-webkit-box-flex:4;box-flex:4;}
+
+
+.wid-100{width: 100%;}
+
+.PALL-20{padding: 20px;}
+
+/* 清除浮动 */
+.clear:after{content:"";clear:both;height:0;display:block;visibility:hidden;overflow:hidden;}
+
+.floatL{float: left;}
+.floatR{float: right;}
