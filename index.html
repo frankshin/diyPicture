@@ -6,33 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个性化图片处理</title>
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css?v=1">
     <script src="//xudengwei.com/libs/xiaopang.js"></script>
-    <style>
-        body{background: #ececec;}
-        .navbtn.active{border: 1px solid red;}
-        .btn{border: 1px gray solid;border-radius: 6px;padding: 5px 10px 5px 10px;}
-        .cont_0{width: 100%;}
-        .uploadbtn{width: 200px;}
-        
-        /* 裁剪module */
-        .cont_0 .pic img{width: 100%;}
-        .cont_0 .view{margin: 0 auto;width: 200px;height: 200px;background-color: #666;}
-        .cont_0 .view img{width: 100%;}
-        /* 合成模块 */
-        .cont_1 .pic{padding: 15px;background-color: white;}
-        .cont_1 .pic img{width: 100%;}
-        .cont_1 .icon{padding: 10px;margin-top: 20px;margin-bottom: 10px;}
-        .cont_1 .icon .iconimg{
-            width: 70px;
-            height: 100px;
-            float: left;
-            margin: 5px;
-            border: 1px white dashed;
-        }
-        .cont_1 .icon .iconimg.active{
-            box-shadow: 2px 2px 2px gray;
-        }
-    </style>
 </head>
 <body>
     <div class="PALL-20 clear">
@@ -52,7 +27,6 @@
 
         <div class="view"></div>
     </div>
-
 
 
     <!-- 合成模块 -->
@@ -124,10 +98,7 @@
             inputfile.addEventListener('change', function(event){
                 files = smallpang.EventUtil.getTarget(event).files;
                 reader = new FileReader();
-
                 reader.readAsDataURL(files[0]);
-                console.log(reader);
-
                 reader.onload = function(){
                     var html = '<img src=' + reader.result + '>';
                     reShow.innerHTML = html;
