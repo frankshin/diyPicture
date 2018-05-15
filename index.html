@@ -6,15 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个性化图片处理</title>
     <link rel="stylesheet" href="css/common.css">
+    <script src="//xudengwei.com/libs/xiaopang.js"></script>
     <style>
         body{background: #ececec;}
         .navbtn.active{border: 1px solid red;}
         .btn{border: 1px gray solid;border-radius: 6px;padding: 5px 10px 5px 10px;}
         .cont_0{width: 100%;}
         .uploadbtn{width: 200px;}
-        .view{margin: 0 auto;width: 200px;height: 200px;background-color: #666;}
+        
+        /* 裁剪module */
+        .cont_0 .pic img{width: 100%;}
+        .cont_0 .view{margin: 0 auto;width: 200px;height: 200px;background-color: #666;}
+        .cont_0 .view img{width: 100%;}
         /* 合成模块 */
         .cont_1 .pic{padding: 15px;background-color: white;}
+        .cont_1 .pic img{width: 100%;}
         .cont_1 .icon{padding: 10px;margin-top: 20px;margin-bottom: 10px;}
         .cont_1 .icon .iconimg{
             width: 70px;
@@ -36,8 +42,8 @@
 
     <!-- 裁剪 -->
     <div class="cont cont_0 hide show">
-        <div class="pic">
-            <img src="images/1.jpg" class="wid-100" alt="">
+        <div class="pic" id="reshow">
+            <img src="images/1.jpg" alt="">
         </div>
         <div class="PALL-20 clear">
             <input type="file" class="uploadbtn btn floatL">
@@ -77,6 +83,14 @@
 </body>
 <script>
     window.onload = function(){
+        // 全局变量
+        var reader;
+        var picView = document.getElementsByClassName('view')[0];
+        var reShow = document.getElementById('reshow');
+        
+
+        showUploadPic();
+
         var navbtns = document.getElementsByClassName('navbtn');
         for(var a = 0; a < navbtns.length; a++){
             var btn = navbtns[a];
@@ -100,6 +114,27 @@
                 clist.add(status);
             }
         }
+
+        /**
+         * 
+         * 上传后图片回显
+        */
+        function showUploadPic(){
+            var inputfile = document.getElementsByClassName('uploadbtn')[0];
+            inputfile.addEventListener('change', function(event){
+                files = smallpang.EventUtil.getTarget(event).files;
+                reader = new FileReader();
+
+                reader.readAsDataURL(files[0]);
+                console.log(reader);
+
+                reader.onload = function(){
+                    var html = '<img src=' + reader.result + '>';
+                    reShow.innerHTML = html;
+                }
+            });
+        }
+
     }
 </script>
 </html>
