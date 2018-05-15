@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/common.css">
     <style>
         body{background: #ececec;}
+        .navbtn.active{border: 1px solid red;}
         .btn{border: 1px gray solid;border-radius: 6px;padding: 5px 10px 5px 10px;}
         .cont_0{width: 100%;}
         .uploadbtn{width: 200px;}
@@ -34,7 +35,7 @@
     </div>
 
     <!-- 裁剪 -->
-    <div class="cont cont_0">
+    <div class="cont cont_0 hide show">
         <div class="pic">
             <img src="images/1.jpg" class="wid-100" alt="">
         </div>
@@ -81,16 +82,23 @@
             var btn = navbtns[a];
             btn.index = a;
             btn.addEventListener('click', function(){
+                // 按钮高亮
+                modifyStatus(navbtns, this, 'active');
+                // 对应内容显示
                 var conts = document.getElementsByClassName('cont');
-                for(var c = 0; c < conts.length; c++){
-                    if(!conts[c].classList.contains('hide')) conts[c].classList.add('hide');
-                }
                 var cont = document.getElementsByClassName('cont_' + (this.index).toString())[0];
-                var clist = cont.classList;
-                if(clist.contains('hide')){
-                    clist.remove('hide');
-                }
+                modifyStatus(conts, cont, 'show');
             });
+        }
+
+        function modifyStatus(domArray, actDom, status){
+            for(var c = 0; c < domArray.length; c++){
+                if(domArray[c].classList.contains(status)) domArray[c].classList.remove(status);
+            }
+            var clist = actDom.classList;
+            if(!clist.contains(status)){
+                clist.add(status);
+            }
         }
     }
 </script>
