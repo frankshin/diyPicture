@@ -7,44 +7,91 @@
     <title>个性化图片处理</title>
     <link rel="stylesheet" href="css/common.css">
     <style>
+        body{background: #ececec;}
         .btn{border: 1px gray solid;border-radius: 6px;padding: 5px 10px 5px 10px;}
-        /**/
         .cont_0{width: 100%;}
+        .uploadbtn{width: 200px;}
+        .view{margin: 0 auto;width: 200px;height: 200px;background-color: #666;}
+        /* 合成模块 */
+        .cont_1 .pic{padding: 15px;background-color: white;}
+        .cont_1 .icon{padding: 10px;margin-top: 20px;margin-bottom: 10px;}
+        .cont_1 .icon .iconimg{
+            width: 70px;
+            height: 100px;
+            float: left;
+            margin: 5px;
+            border: 1px white dashed;
+        }
+        .cont_1 .icon .iconimg.active{
+            box-shadow: 2px 2px 2px gray;
+        }
     </style>
 </head>
 <body>
     <div class="PALL-20 clear">
-        <div class="caijian floatL btn active">裁剪</div>
-        <div class="hecheng floatR btn">合成</div>
+        <div class="caijian floatL btn navbtn active">裁剪</div>
+        <div class="hecheng floatR btn navbtn">合成</div>
     </div>
 
-    <div class="cont_0">
+    <!-- 裁剪 -->
+    <div class="cont cont_0">
         <div class="pic">
             <img src="images/1.jpg" class="wid-100" alt="">
         </div>
-        <div class="clear">
-            <input type="file" class="btn floatL">
+        <div class="PALL-20 clear">
+            <input type="file" class="uploadbtn btn floatL">
             <div class="btn floatR">截取</div>
         </div>
+
+        <div class="view"></div>
     </div>
-
-
-
-
-
-    <div class="cont_1">
-
-    </div>
-
 
 
 
     <!-- 合成模块 -->
+    <div class="cont cont_1 hide">
+        <div class="pic">
+            <img src="images/1.jpg" class="wid-100" alt="">
+        </div>
+        <div class="icon">
+            <ul class="clear">
+                <li class="iconimg active">
+                    <img class="wid-100 hei-100" src="images/i1.jpg" alt="">
+                </li>
+                <li class="iconimg">
+                    <img class="wid-100 hei-100" src="images/i2.jpg" alt="">
+                </li>
+                <li class="iconimg">
+                    <img class="wid-100 hei-100" src="images/i3.jpg" alt="">
+                </li>
+            </ul>
+        </div>
+        <div class="PALL-20 clear">
+            <input type="file" class="uploadbtn btn floatL">
+            <div class="btn floatR">生成图片</div>
+        </div>
+    </div>
+
     
 </body>
 <script>
     window.onload = function(){
-        //
+        var navbtns = document.getElementsByClassName('navbtn');
+        for(var a = 0; a < navbtns.length; a++){
+            var btn = navbtns[a];
+            btn.index = a;
+            btn.addEventListener('click', function(){
+                var conts = document.getElementsByClassName('cont');
+                for(var c = 0; c < conts.length; c++){
+                    if(!conts[c].classList.contains('hide')) conts[c].classList.add('hide');
+                }
+                var cont = document.getElementsByClassName('cont_' + (this.index).toString())[0];
+                var clist = cont.classList;
+                if(clist.contains('hide')){
+                    clist.remove('hide');
+                }
+            });
+        }
     }
 </script>
 </html>

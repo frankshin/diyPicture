@@ -35,8 +35,11 @@ ub-f1 ub-f2 ub-f3 ub-f4 子元素占用区域份数*/
 .ub-f3{position:relative;-webkit-box-flex:3;box-flex:3;}
 .ub-f4{position:relative;-webkit-box-flex:4;box-flex:4;}
 
+.hide{display: none;}
+
 
 .wid-100{width: 100%;}
+.hei-100{height: 100%;}
 
 .PALL-20{padding: 20px;}
 
