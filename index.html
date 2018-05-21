@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css?v=1">
     <script src="//xudengwei.com/libs/xiaopang.js"></script>
+    <script src="libs/harmmer.min.js"></script>
 </head>
 <body>
     <div class="PALL-20 clear">
@@ -15,10 +16,19 @@
         <div class="hecheng floatR btn navbtn">合成</div>
     </div>
 
+    <div id="msg"></div>
+
     <!-- 裁剪 -->
     <div class="cont cont_0 hide show">
-        <div class="pic" id="reshow">
-            <img src="images/1.jpg" alt="">
+        <div class="dw">
+            <div class="pic" id="reshow">
+                <img src="images/1.jpg" id="pictest" alt="">
+            </div>
+            <div class="leftd"></div>
+            <div class="topd"></div>
+            <div class="rightd"></div>
+            <div class="bottomd"></div>
+            <div class="biaoci"></div>
         </div>
         <div class="PALL-20 clear">
             <input type="file" class="uploadbtn btn floatL">
@@ -64,6 +74,7 @@
         
 
         showUploadPic();
+        // configHarmmer();
 
         var navbtns = document.getElementsByClassName('navbtn');
         for(var a = 0; a < navbtns.length; a++){
@@ -105,6 +116,40 @@
                 }
             });
         }
+
+        /**
+         * 
+         * harmmerjs 插件配置
+        */
+        // Get a reference to an element.
+        // var square = document.querySelector('.view');
+
+        // Create an instance of Hammer with the reference.
+        var reShow = document.getElementsByClassName('view')[0];
+        var hammer = new Hammer(reShow);
+
+        // Subscribe to a quick start event: press, tap, or doubletap.
+        // For a full list of quick start events, read the documentation.
+        hammer.on('tap', function(e) {
+            // e.target.classList.toggle('expand');
+            console.log(e);
+            var domlist = smallpang.showMsg(e);
+            document.getElementById('msg').appendChild(domlist);
+        });
+
+
+
+        /**
+         * 
+         * 看下blob对象相关
+         * 
+         * 测试下slice blob对象
+         * 
+         * 测试下图片的截取显示是否是通过第25章 新兴api的blob对象实现的？
+         * 
+         * 
+        */
+
 
     }
 </script>
