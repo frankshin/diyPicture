@@ -1,3 +1,4 @@
+
 body{background: #ececec;}
 .navbtn.active{border: 1px solid red;}
 .btn{border: 1px gray solid;border-radius: 6px;padding: 5px 10px 5px 10px;}
@@ -8,6 +9,60 @@ body{background: #ececec;}
 .cont_0 .pic img{width: 100%;}
 .cont_0 .view{margin: 0 auto;width: 200px;height: 200px;background-color: #666;}
 .cont_0 .view img{width: 100%;}
+.cont_0 .biaoci{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 260px;
+    height: 260px;
+    margin-left: -130px;
+    margin-top: -130px;
+    border: 2px dashed rgb(221, 221, 221);
+}
+.cont_0 .leftd{
+    position: absolute;
+    left: 0px;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-right: 130px;
+    margin-top: -130px;
+    margin-bottom: -130px;
+}
+.cont_0 .topd{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 130px;
+}
+.cont_0 .rightd{
+    position: absolute;
+    left: 50%;
+    right: 0px;
+    top: 50%;
+    bottom: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-left: 130px;
+    margin-top: -130px;
+    margin-bottom: -130px;
+}
+.cont_0 .bottomd{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 50%;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: 130px;
+}
+
+
+
 /* 合成模块 */
 .cont_1 .pic{padding: 15px;background-color: white;}
 .cont_1 .pic img{width: 100%;}
