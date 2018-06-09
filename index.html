@@ -67,29 +67,35 @@
 </body>
 <script>
     window.onload = function(){
-        // 全局变量
+        /**
+         * 全局变量
+         * 
+        */
         var reader;
-        var picView = document.getElementsByClassName('view')[0];
-        var reShow = document.getElementById('reshow');
+        var picView = document.getElementsByClassName('view')[0]; // bottom预览区域
+        var reShow = document.getElementById('reshow');  // 上传回显区域
         
-
+        initPage();
         showUploadPic();
         // configHarmmer();
 
-        var navbtns = document.getElementsByClassName('navbtn');
-        for(var a = 0; a < navbtns.length; a++){
-            var btn = navbtns[a];
-            btn.index = a;
-            btn.addEventListener('click', function(){
-                // 按钮高亮
-                modifyStatus(navbtns, this, 'active');
-                // 对应内容显示
-                var conts = document.getElementsByClassName('cont');
-                var cont = document.getElementsByClassName('cont_' + (this.index).toString())[0];
-                modifyStatus(conts, cont, 'show');
-            });
+        // 初始化页面交互
+        function initPage(){
+            var navbtns = document.getElementsByClassName('navbtn'); // 顶部nav btn
+            for(var a = 0; a < navbtns.length; a++){
+                var btn = navbtns[a];
+                btn.index = a;
+                btn.addEventListener('click', function(){
+                    // 按钮高亮
+                    modifyStatus(navbtns, this, 'active');
+                    // 对应内容显示
+                    var conts = document.getElementsByClassName('cont');
+                    var cont = document.getElementsByClassName('cont_' + (this.index).toString())[0];
+                    modifyStatus(conts, cont, 'show');
+                });
+            }
         }
-
+        
         function modifyStatus(domArray, actDom, status){
             for(var c = 0; c < domArray.length; c++){
                 if(domArray[c].classList.contains(status)) domArray[c].classList.remove(status);
@@ -102,7 +108,7 @@
 
         /**
          * 
-         * 上传后图片回显
+         * 上传图片并回显
         */
         function showUploadPic(){
             var inputfile = document.getElementsByClassName('uploadbtn')[0];
