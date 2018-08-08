@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个性化图片处理</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css?v=1">
+    <script src="//xudengwei.com/libs/xiaopang.js"></script>
+    <script src="libs/harmmer.min.js"></script>
+</head>
+<body>
+    <div class="PALL-20 clear">
+        <div class="caijian floatL btn navbtn active">裁剪</div>
+        <div class="hecheng floatR btn navbtn">合成</div>
+    </div>
+
+    <div id="msg"></div>
+
+    <!-- 裁剪 -->
+    <div class="cont cont_0 hide show">
+        <div class="dw">
+            <div class="pic" id="reshow">
+                <img src="images/1.jpg" id="pictest" alt="">
+            </div>
+            <div class="leftd"></div>
+            <div class="topd"></div>
+            <div class="rightd"></div>
+            <div class="bottomd"></div>
+            <div class="biaoci"></div>
+        </div>
+        <div class="PALL-20 clear">
+            <input type="file" class="uploadbtn btn floatL">
+            <div class="btn floatR">截取</div>
+        </div>
+
+        <div class="view"></div>
+    </div>
+
+
+    <!-- 合成模块 -->
+    <div class="cont cont_1 hide">
+        <div class="pic">
+            <img src="images/1.jpg" class="wid-100" alt="">
+        </div>
+        <div class="icon">
+            <ul class="clear">
+                <li class="iconimg active">
+                    <img class="wid-100 hei-100" src="images/i1.jpg" alt="">
+                </li>
+                <li class="iconimg">
+                    <img class="wid-100 hei-100" src="images/i2.jpg" alt="">
+                </li>
+                <li class="iconimg">
+                    <img class="wid-100 hei-100" src="images/i3.jpg" alt="">
+                </li>
+            </ul>
+        </div>
+        <div class="PALL-20 clear">
+            <input type="file" class="uploadbtn btn floatL">
+            <div class="btn floatR">生成图片</div>
+        </div>
+    </div>
+
+    
+</body>
+<script>
+    window.onload = function(){
+        /**
+         * 全局变量
+         * 
+        */
+        var reader;
+        var picView = document.getElementsByClassName('view')[0]; // bottom预览区域
+        var reShow = document.getElementById('reshow');  // 上传回显区域
+        
+        initPage();
+        showUploadPic();
+        // configHarmmer();
+
+        // 初始化页面交互
+        function initPage(){
+            var navbtns = document.getElementsByClassName('navbtn'); // 顶部nav btn
+            for(var a = 0; a < navbtns.length; a++){
+                var btn = navbtns[a];
+                btn.index = a;
+                btn.addEventListener('click', function(){
+                    // 按钮高亮
+                    modifyStatus(navbtns, this, 'active');
+                    // 对应内容显示
+                    var conts = document.getElementsByClassName('cont');
+                    var cont = document.getElementsByClassName('cont_' + (this.index).toString())[0];
+                    modifyStatus(conts, cont, 'show');
+                });
+            }
+        }
+        
+        function modifyStatus(domArray, actDom, status){
+            for(var c = 0; c < domArray.length; c++){
+                if(domArray[c].classList.contains(status)) domArray[c].classList.remove(status);
+            }
+            var clist = actDom.classList;
+            if(!clist.contains(status)){
+                clist.add(status);
+            }
+        }
+
+        /**
+         * 
+         * 上传图片并回显
+        */
+        function showUploadPic(){
+            var inputfile = document.getElementsByClassName('uploadbtn')[0];
+            inputfile.addEventListener('change', function(event){
+                files = smallpang.EventUtil.getTarget(event).files;
+                reader = new FileReader();
+                reader.readAsDataURL(files[0]);
+                reader.onload = function(){
+                    var html = '<img src=' + reader.result + '>';
+                    reShow.innerHTML = html;
+                }
+            });
+        }
+
+        /**
+         * 
+         * harmmerjs 插件配置
+        */
+        // Get a reference to an element.
+        // var square = document.querySelector('.view');
+
+        // Create an instance of Hammer with the reference.
+        var reShow = document.getElementsByClassName('view')[0];
+        var hammer = new Hammer(reShow);
+
+        // Subscribe to a quick start event: press, tap, or doubletap.
+        // For a full list of quick start events, read the documentation.
+        hammer.on('tap', function(e) {
+            // e.target.classList.toggle('expand');
+            console.log(e);
+            var domlist = smallpang.showMsg(e);
+            document.getElementById('msg').appendChild(domlist);
+        });
+
+
+
+        /**
+         * 
+         * 看下blob对象相关
+         * 
+         * 测试下slice blob对象
+         * 
+         * 测试下图片的截取显示是否是通过第25章 新兴api的blob对象实现的？
+         * 
+         * 
+        */
+
+
+    }
+</script>
+</html>
